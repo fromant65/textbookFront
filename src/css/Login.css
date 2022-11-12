@@ -1,0 +1,94 @@
+body {
+    background-color: #ddd;
+}
+
+.page{
+    display: grid;
+    grid-template-rows: 7fr, 1fr;
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+}
+
+.titulo {
+    text-align: center;
+    padding: 20px;
+}
+
+.user-div,
+.pwd-div {
+    display: flex;
+    margin: 10px
+}
+
+.label-user,
+.label-pwd {
+    width: 200px;
+}
+
+#username,
+#password {
+    border: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    flex-grow: 1;
+}
+
+#username:focus,
+#password:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgb(100, 160, 210);
+}
+
+.submit {
+    display: flex;
+}
+
+#submit {
+    background-color: rgb(100, 160, 210);
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+#submit:hover {
+    box-shadow: 0px 0px 5px rgb(100, 160, 210);
+}
+
+.forget-pwd {
+    text-align: center;
+}
+
+.register-redirect {
+    border-top: 1px solid #ddd;
+    margin: 15px;
+    padding: 15px;
+    text-align: center;
+}
+
+.resultado div {
+    font-size: 20px;
+    text-align: center;
+}
+
+.resultado a {
+    font-size: 15px;
+    text-align: center;
+}
+
+.login-error{
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color:rgb(210, 100, 100);
+    font-size: 25px;
+}

@@ -1,0 +1,45 @@
+body{
+    background-color: #ddd;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card, .links, .titulo{
+    background-color: #fff;
+}
+
+.card{
+    padding: 20px 60px;
+    margin: 60px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+}
+
+.links {
+    display: flex;
+}
+
+.link{
+    text-align: center;
+    margin: 30px;
+    margin-bottom: 50px;
+    padding: 10px;
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(100, 160, 210);
+    text-decoration: none;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.link:hover {
+    box-shadow: 0px 0px 3px rgb(60, 100, 138);
+    background-color: rgb(110, 170, 220);
+}
