@@ -4,7 +4,7 @@ import "../css/Root.css";
 
 const Root = () => {
   return (
-    <div className="page">
+    <div className="page-root">
       <div className="card">
         <h1 className="titulo">Bienvenido a Textbook</h1>
         <div className="links">

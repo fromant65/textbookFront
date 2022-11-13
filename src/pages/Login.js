@@ -45,7 +45,7 @@ const Login = () => {
       });
   }, []);
   return (
-    <div className="page">
+    <div className="page-login">
       <div className="container form-container">
         <h2 className="titulo">Iniciar sesión</h2>
         <form

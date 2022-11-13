@@ -30,6 +30,10 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
+      <Route to="/config">Config</Route>
+      <Route to="/profile">Config</Route>
+      <Route to="/search">Config</Route>
+      <Route to="/chat">Config</Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

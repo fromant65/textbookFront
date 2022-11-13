@@ -2,7 +2,7 @@ body {
     background-color: #ddd;
 }
 
-.page{
+.page-login{
     display: grid;
     grid-template-rows: 7fr, 1fr;
 }
