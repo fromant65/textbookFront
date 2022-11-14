@@ -59,7 +59,7 @@ const MakePost = () => {
           </div>
         </form>
       </div>
-      <div>{isPost ? "Post hecho" : "Aun no hay post"}</div>
+      <div>{isPost ? "Post hecho" : ""}</div>
     </div>
   );
 };

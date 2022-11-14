@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import "../css/Login.css";
 
 const Login = () => {
@@ -32,17 +32,19 @@ const Login = () => {
   //Redireccionamos una vez que se logea el usuario
   useEffect(() => {
     if (isLogged) {
-      navigate("/home");
+      window.location.href = "/home";
     }
   }, [isLogged]);
   useEffect(() => {
-    fetch("http://localhost:3500/login", { credentials: "include" })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.loggedIn) setIsLogged(true);
-      });
+    if (!isLogged) {
+      fetch("http://localhost:3500/login", { credentials: "include" })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.loggedIn) setIsLogged(true);
+        });
+    }
   }, []);
   return (
     <div className="page-login">
