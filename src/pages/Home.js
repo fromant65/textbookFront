@@ -80,7 +80,6 @@ const Home = () => {
                   content={post.content}
                   date={post.date}
                   likes={post.likes}
-                  comments={post.comments}
                   postId={post._id}
                 ></Post>
               </div>
