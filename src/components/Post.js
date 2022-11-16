@@ -3,12 +3,13 @@ import "../css/Post.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import ShowComments from "./ShowComments";
+import formatearFecha from "../formatearFecha";
 
 const Post = ({ user, author, content, date, likes, postId }) => {
   //User es el usuario que tiene abierta la sesión actual; author es el autor del post
   const [like, setLike] = useState(false);
   const [isCommentsOpen, setIsCommentsOpen] = useState(null);
-
+  const _date = new Date(date);
   const handleNewLike = async () => {
     if (!user) return;
     if (like) likes.pop();
@@ -40,7 +41,7 @@ const Post = ({ user, author, content, date, likes, postId }) => {
       <div className="post-container">
         <button className="post-options">...</button>
         <div className="post-author">{author}</div>
-        <div className="post-date">{date}</div>
+        <div className="post-date">{formatearFecha(_date)}</div>
         <div className="post-content">{content}</div>
         <div className="post-interactions">
           <div

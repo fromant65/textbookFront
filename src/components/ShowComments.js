@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/ShowComments.css";
 import { getUsername } from "../getUsername";
+import formatearFecha from "../formatearFecha";
 
 const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
   const [comments, setComments] = useState([]);
@@ -63,11 +64,12 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
         </button>
         <div className="comments-list">
           {comments.map((comment) => {
+            const date = new Date(comment.date);
             return (
               <div key={comment._id} className="comment-container">
                 <button className="comment-options">...</button>
                 <div className="comment-user">{comment.user}</div>
-                <div className="comment-date">{comment.date}</div>
+                <div className="comment-date">{formatearFecha(date)}</div>
                 <div className="comment-content">{comment.content}</div>
               </div>
             );
