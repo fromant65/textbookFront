@@ -1,9 +1,56 @@
 .page-home {
     display: grid;
-    grid-template-rows: 200px;
     background-color: white;
 }
 
 .posts-home{
     width: 100%;
+}
+
+#cargar-mas {
+    width: 150px;
+    margin: 10px auto;
+    border: none;
+    display: inline-block;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+#cargar-mas:hover {
+    background-color: #ddd;
+}
+
+#cargar-mas-spinner{
+    display: inline-block;
+}
+
+.cargando-hidden {
+    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.cargando-visible {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin-left: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    border-color: #222 transparent #222 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

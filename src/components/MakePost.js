@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../css/MakePost.css";
 import { getUsername } from "../getUsername";
+import Post from "./Post";
 
 const MakePost = () => {
   const [postText, setPostText] = useState("");
-  const [isPost, setIsPost] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    const getUser = async () => {
+      const username = await getUsername();
+      setUser(username);
+    };
+    getUser();
+  }, []);
   const handlePost = async (e) => {
     e.preventDefault();
-    const user = await getUsername();
     const fechaPublicacion = new Date();
     //Hacemos la publicación
     const location = "http://localhost:3500/home/publicar";
@@ -25,10 +33,10 @@ const MakePost = () => {
       credentials: "include",
     });
     const res = await req.json();
-    if (res.success) {
-      setIsPost(true);
+    if (res.post) {
+      setPosts([res.post, ...posts]);
     } else {
-      setIsPost(false);
+      console.log("Hubo un error al postear: " + res.message);
     }
     setPostText("");
   };
@@ -37,8 +45,8 @@ const MakePost = () => {
     else document.getElementById("publicar").disabled = true;
   });
   return (
-    <div>
-      <div>
+    <div className="makePost-container">
+      <article>
         <form className="crear-publicacion" onSubmit={(e) => handlePost(e)}>
           <textarea
             name="publicacion"
@@ -58,8 +66,24 @@ const MakePost = () => {
             </button>
           </div>
         </form>
-      </div>
-      <div>{isPost ? "Post hecho" : ""}</div>
+      </article>
+      <article className="new-posts-container">
+        {posts.map((post) => {
+          return (
+            <div key={post._id}>
+              <Post
+                user={user}
+                author={post.user}
+                content={post.content}
+                date={post.date}
+                likes={post.likes}
+                comments={post.comments}
+                postId={post._id}
+              ></Post>
+            </div>
+          );
+        })}
+      </article>
     </div>
   );
 };

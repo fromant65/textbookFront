@@ -25,9 +25,11 @@ const Post = ({ user, author, content, date, likes, comments, postId }) => {
     setLike(!like);
   };
   useEffect(() => {
-    likes.filter((username) => username === user);
-    if (likes.length === 1) setLike(true);
-    else setLike(false);
+    if (likes) {
+      likes.filter((username) => username === user);
+      if (likes.length === 1) setLike(true);
+      else setLike(false);
+    }
   }, []);
   return (
     <div className="post-container">
@@ -42,8 +44,8 @@ const Post = ({ user, author, content, date, likes, comments, postId }) => {
             handleNewLike();
           }}
         >
-          {like ? <AiFillHeart /> : <AiOutlineHeart />} {likes.length}{" "}
-          {likes.length === 1 ? "like" : "likes"}
+          {like ? <AiFillHeart /> : <AiOutlineHeart />} {likes?.length}{" "}
+          {likes?.length === 1 ? "like" : "likes"}
         </div>
         <div className="post-comments">Comments</div>
       </div>
