@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../css/ShowComments.css";
 import { getUsername } from "../getUsername";
-import formatearFecha from "../formatearFecha";
+import Comment from "./Comment";
+
+export const CommentContext = React.createContext();
 
 const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
   const [comments, setComments] = useState([]);
@@ -65,12 +67,16 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
         <div className="comments-list">
           {comments.map((comment) => {
             const date = new Date(comment.date);
+            const user = comment.user;
+            const content = comment.content;
+            const _id = comment._id;
             return (
-              <div key={comment._id} className="comment-container">
-                <button className="comment-options">...</button>
-                <div className="comment-user">{comment.user}</div>
-                <div className="comment-date">{formatearFecha(date)}</div>
-                <div className="comment-content">{comment.content}</div>
+              <div key={_id} className="comment-container">
+                <CommentContext.Provider
+                  value={{ date, user, content, _id, postId }}
+                >
+                  <Comment />
+                </CommentContext.Provider>
               </div>
             );
           })}

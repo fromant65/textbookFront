@@ -1,6 +1,6 @@
-.post-container{
+.post-container {
     width: 400px;
-    margin:auto;
+    margin: auto;
     margin-top: 20px;
     border-radius: 10px;
     padding: 15px;
@@ -9,37 +9,39 @@
     position: relative
 }
 
-.post-options{
-    position:absolute;
+.post-options {
+    position: absolute;
     top: 15px;
     right: 15px;
     background-color: transparent;
     border: none;
     font-weight: 1000;
+    user-select: none;
 }
 
-.post-options:hover{
+.post-options:hover {
     color: rgb(100, 160, 210);
 }
 
-.post-author, .post-date{
+.post-author,
+.post-date {
     display: inline-block;
 }
 
-.post-author{
-    color:rgb(100, 160, 210);
+.post-author {
+    color: rgb(100, 160, 210);
     margin-right: 10px;
     font-size: 20px;
     font-weight: 600;
 }
 
-.post-content{
+.post-content {
     margin: 15px;
     padding-left: 10px;
     border-left: 1px solid #ddd;
 }
 
-.post-interactions{
+.post-interactions {
     display: grid;
     grid-template-columns: 50% 50%;
     border-top: 1px solid #ddd;
@@ -47,7 +49,8 @@
     padding: 10px;
 }
 
-.post-likes, .post-comments{
+.post-likes,
+.post-comments {
     user-select: none;
     text-align: center;
     font-weight: 500;
@@ -56,8 +59,8 @@
     border-radius: 10px;
 }
 
-.post-likes:hover, .post-comments:hover{
+.post-likes:hover,
+.post-comments:hover {
     background-color: rgb(240, 250, 255);
     color: black;
 }
-

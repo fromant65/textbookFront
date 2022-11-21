@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { PostContext } from "./Post";
+import EditCard from "./EditCard";
+import "../css/PostOptions.css";
 
-const PostOptions = ({ postId, user, author, setIsDeleted }) => {
-  const postEditHandler = () => {};
+const PostOptions = () => {
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const { postId, user, author, setIsDeleted } = useContext(PostContext);
+
   const deletePost = async () => {
     const location = "http://localhost:3500/home/eliminar-post";
     const req = await fetch(location, {
@@ -19,19 +24,23 @@ const PostOptions = ({ postId, user, author, setIsDeleted }) => {
   };
 
   useEffect(() => {
-    console.log(user === author);
+    console.log(isEditOpen);
   }, []);
 
   return (
     <div className="post-options-container">
       {user === author ? (
         <>
-          <button className="post-option" onClick={postEditHandler}>
+          <button
+            className="post-option"
+            onClick={() => setIsEditOpen(!isEditOpen)}
+          >
             Editar post
           </button>
           <button className="post-option" onClick={deletePost}>
             Eliminar
           </button>
+          {isEditOpen ? <EditCard setIsEditOpen={setIsEditOpen} /> : ""}
         </>
       ) : (
         ""
