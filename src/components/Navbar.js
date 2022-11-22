@@ -26,28 +26,28 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="home navitem">
-          <Link className="Link" to="/home">
+          <a className="Link" href="/home">
             <IconContext.Provider value={iconValue}>
               <BiBook />
             </IconContext.Provider>
             <p>Textbook</p>
-          </Link>
+          </a>
         </div>
         <div className="profile navitem">
-          <Link className="Link" to="/profile">
+          <a className="Link" href="/profile">
             <IconContext.Provider value={iconValue}>
               <CgProfile />
             </IconContext.Provider>
             <p>Profile</p>
-          </Link>
+          </a>
         </div>
         <div className="config navitem">
-          <Link className="Link" to="/config">
+          <a className="Link" href="/config">
             <IconContext.Provider value={iconValue}>
               <BsGear />
             </IconContext.Provider>
             <p>Config</p>
-          </Link>
+          </a>
         </div>
         <div className="logout navitem Link" onClick={logoutHandler}>
           <IconContext.Provider value={iconValue}>

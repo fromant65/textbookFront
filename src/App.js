@@ -16,7 +16,12 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (isLogged) {
+    if (
+      isLogged &&
+      (window.location.pathname === "/" ||
+        window.location.pathname === "/login" ||
+        window.location.pathname === "/register")
+    ) {
       navigate("/home");
     }
   }, [isLogged]);
