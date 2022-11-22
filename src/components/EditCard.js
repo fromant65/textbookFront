@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import "../css/EditCard.css";
-
+import { serverLink } from "../App";
 import { PostContext } from "./Post";
 
 const EditCard = ({ setIsEditOpen }) => {
   const { content_, setContent, postId } = useContext(PostContext);
   const [newContent, setNewContent] = useState(content_);
   const handleEditContent = async () => {
-    const location = "http://localhost:3500/home/editar-post";
+    const location = `${serverLink}/home/editar-post`;
     const req = await fetch(location, {
       method: "POST",
       headers: {

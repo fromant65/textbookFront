@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { CommentContext } from "./Comment";
+import { serverLink } from "../App";
 
 const EditCommentCard = ({ setIsEditOpen }) => {
   const { _id, content, postId, setContent } = useContext(CommentContext);
   const [newContent, setNewContent] = useState(content);
   const handleEditContent = async () => {
-    const location = "http://localhost:3500/home/editar-comentario";
+    const location = `${serverLink}/home/editar-comentario`;
     const req = await fetch(location, {
       method: "POST",
       headers: {

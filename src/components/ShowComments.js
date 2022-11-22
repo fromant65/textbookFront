@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../css/ShowComments.css";
 import { getUsername } from "../getUsername";
 import Comment from "./Comment";
+import { serverLink } from "../App";
 
 const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
   const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState("");
 
   const getComments = async (postId) => {
-    const location = `http://localhost:3500/home/getcomentarios/${postId}`;
+    const location = `${serverLink}/home/getcomentarios/${postId}`;
     const req = await fetch(location, { credentials: "include" });
     const res = await req.json();
     const comentarios = res.comentarios;
@@ -20,7 +21,7 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
   }, []);
 
   const makeComment = async (postId) => {
-    const location = `http://localhost:3500/home/comentar`;
+    const location = `${serverLink}/home/comentar`;
     const user = await getUsername();
     const date = new Date();
     const req = await fetch(location, {

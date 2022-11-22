@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../css/Home.css";
 import Navbar from "../components/Navbar";
 import MakePost from "../components/MakePost";
 import Post from "../components/Post";
 import CargarMas from "../components/CargarMas";
+import { serverLink } from "../App";
 
 const Home = () => {
   const [lastPost, setLastPost] = useState(0);
@@ -12,7 +13,7 @@ const Home = () => {
   const [user, setUser] = useState("");
   useEffect(() => {
     const fetchUser = async () => {
-      const req = await fetch("http://localhost:3500/login", {
+      const req = await fetch(`${serverLink}/login`, {
         credentials: "include",
       });
       const res = await req.json();
@@ -22,7 +23,7 @@ const Home = () => {
   }, []);
   useEffect(() => {
     const fetchPost = async () => {
-      const req = await fetch("http://localhost:3500/home/ultima-publicacion", {
+      const req = await fetch(`${serverLink}/home/ultima-publicacion`, {
         credentials: "include",
       });
       const res = await req.json();
@@ -38,7 +39,7 @@ const Home = () => {
     document
       .getElementById("cargar-mas-spinner")
       .classList.add("cargando-visible");
-    const req = await fetch("http://localhost:3500/home/publicaciones", {
+    const req = await fetch(`${serverLink}/home/publicaciones`, {
       method: "POST",
       headers: {
         Accept: "application/json",

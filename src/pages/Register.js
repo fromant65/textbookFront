@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/Register.css";
+import { serverLink } from "../App";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ const Register = () => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    const location = "http://localhost:3500/register";
+    const location = `${serverLink}/register`;
     const req = await fetch(location, {
       method: "POST",
       headers: {
@@ -55,7 +56,7 @@ const Register = () => {
     }
   }, [isRegistered]);
   useEffect(() => {
-    fetch("http://localhost:3500/login", { credentials: "include" })
+    fetch(`${serverLink}/login`, { credentials: "include" })
       .then((res) => {
         return res.json();
       })

@@ -5,11 +5,12 @@ import { CgProfile } from "react-icons/cg";
 import { BsGear } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { serverLink } from "../App";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = async () => {
-    const location = "http://localhost:3500/logout";
+    const location = `${serverLink}/logout`;
     const req = await fetch(location, { credentials: "include" });
     const res = await req.json();
     if (res.logout) navigate("/");

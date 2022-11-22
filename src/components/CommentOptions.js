@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { CommentContext } from "./Comment";
 import EditCommentCard from "./EditCommentCard";
 import "../css/CommentOptions.css";
+import { serverLink } from "../App";
 
 const CommentOptions = ({}) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -18,7 +19,7 @@ const CommentOptions = ({}) => {
   } = useContext(CommentContext);
 
   const deletePost = async () => {
-    const location = "http://localhost:3500/home/eliminar-comentario";
+    const location = `${serverLink}/home/eliminar-comentario`;
     console.log(commentId, postId);
     const req = await fetch(location, {
       method: "POST",

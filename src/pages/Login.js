@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import "../css/Login.css";
+import { serverLink } from "../App";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    const location = "http://localhost:3500/login";
+    const location = `${serverLink}/login`;
     const req = await fetch(location, {
       method: "POST",
       headers: {
@@ -37,7 +38,7 @@ const Login = () => {
   }, [isLogged]);
   useEffect(() => {
     if (!isLogged) {
-      fetch("http://localhost:3500/login", { credentials: "include" })
+      fetch(`${serverLink}/login`, { credentials: "include" })
         .then((res) => {
           return res.json();
         })

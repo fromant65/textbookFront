@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import ShowComments from "./ShowComments";
 import formatearFecha from "../formatearFecha";
 import PostOptions from "./PostOptions";
+import { serverLink } from "../App";
 
 export const PostContext = React.createContext();
 
@@ -20,7 +21,7 @@ const Post = ({ user, author, content, date, likes, postId }) => {
     if (!user) return;
     if (like) likes.pop();
     else likes.push(user);
-    const location = "http://localhost:3500/home/like";
+    const location = `${serverLink}/home/like`;
     fetch(location, {
       method: "POST",
       headers: {
@@ -69,7 +70,6 @@ const Post = ({ user, author, content, date, likes, postId }) => {
                 className="post-options"
                 onClick={() => {
                   setIsOptionsOpen(!isOptionsOpen);
-                  console.log("opciones abiertas", user, author);
                 }}
               >
                 ...

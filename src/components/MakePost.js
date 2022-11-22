@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/MakePost.css";
 import { getUsername } from "../getUsername";
 import Post from "./Post";
+import { serverLink } from "../App";
 
 const MakePost = () => {
   const [postText, setPostText] = useState("");
@@ -18,7 +19,7 @@ const MakePost = () => {
     e.preventDefault();
     const fechaPublicacion = new Date();
     //Hacemos la publicación
-    const location = "http://localhost:3500/home/publicar";
+    const location = `${serverLink}/home/publicar`;
     const req = await fetch(location, {
       method: "POST",
       headers: {
