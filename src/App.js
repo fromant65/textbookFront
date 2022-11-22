@@ -5,6 +5,8 @@ import Root from "./pages/Root";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Config from "./pages/Config";
 import NotFound from "./pages/NotFound";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
@@ -34,10 +36,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
-        <Route to="/config">Config</Route>
-        <Route to="/profile">Config</Route>
-        <Route to="/search">Config</Route>
-        <Route to="/chat">Config</Route>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/config" element={<Config />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
