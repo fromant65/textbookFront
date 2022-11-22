@@ -52,7 +52,7 @@ const Home = () => {
     });
     const res = await req.json();
     setPosts([...posts, ...res.posts]);
-    setLastPost(res.lastId);
+    setLastPost(res.lastId - 1);
     document
       .getElementById("cargar-mas-spinner")
       .classList.remove("cargando-visible");
@@ -62,8 +62,10 @@ const Home = () => {
     setIsCargando(false);
   };
   useEffect(() => {
-    if (lastPost == 1) {
+    if (lastPost <= 1) {
       document.getElementById("cargar-mas").disabled = true;
+    } else {
+      document.getElementById("cargar-mas").disabled = false;
     }
   }, [lastPost]);
   return (
