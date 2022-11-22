@@ -6,6 +6,5 @@ export const getUsername = async () => {
     credentials: "include",
   });
   const data = await request.json();
-  console.log(data);
   return data.userid;
 };

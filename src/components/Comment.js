@@ -1,12 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import formatearFecha from "../formatearFecha";
 import CommentOptions from "./CommentOptions";
-import { CommentContext } from "./ShowComments";
+import { getUsername } from "../getUsername";
 
-const Comment = () => {
-  const { _id, user, date, content } = useContext(CommentContext);
+export const CommentContext = React.createContext();
+
+const Comment = ({ date, user, content, _id, postId }) => {
+  const [clientUsername, setClientUsername] = useState("");
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [content_, setContent] = useState(content);
+  useEffect(() => {
+    const getUsername_ = async () => {
+      const username = await getUsername();
+      setClientUsername(username);
+    };
+    getUsername_();
+  }, []);
+
   const handleCommentOptions = () => {
     setIsOptionsOpen(!isOptionsOpen);
   };
@@ -16,17 +27,27 @@ const Comment = () => {
         ""
       ) : (
         <>
-          <button className="comment-options" onClick={handleCommentOptions}>
-            ...
-          </button>
-          {isOptionsOpen ? (
-            <CommentOptions setIsOptionsOpen setIsDeleted={setIsDeleted} />
-          ) : (
-            ""
-          )}
-          <div className="comment-user">{user}</div>
-          <div className="comment-date">{formatearFecha(date)}</div>
-          <div className="comment-content">{content}</div>
+          <CommentContext.Provider
+            value={{
+              date,
+              user,
+              content,
+              _id,
+              postId,
+              setIsOptionsOpen,
+              setIsDeleted,
+              setContent,
+              clientUsername,
+            }}
+          >
+            <button className="comment-options" onClick={handleCommentOptions}>
+              ...
+            </button>
+            {isOptionsOpen ? <CommentOptions /> : ""}
+            <div className="comment-user">{user}</div>
+            <div className="comment-date">{formatearFecha(date)}</div>
+            <div className="comment-content">{content_}</div>
+          </CommentContext.Provider>
         </>
       )}
     </>

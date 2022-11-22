@@ -1,0 +1,31 @@
+.comment-options-container {
+    position: relative;
+
+
+}
+
+.comment-options-menu {
+    position: absolute;
+    z-index: 100;
+    top: 40px;
+    right: 0;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #f8f8f8;
+}
+
+.comment-option {
+    display: block;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    min-width: max-content;
+    width: 100px;
+    background-color: #fff;
+}
+
+.comment-option:hover {
+    background-color: #f6f6f6;
+    cursor: pointer;
+}

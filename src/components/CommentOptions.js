@@ -1,9 +1,22 @@
-import React, { useContext } from "react";
-import { PostContext } from "./Post";
-import { CommentContext } from "./ShowComments";
+import React, { useContext, useState } from "react";
+import { CommentContext } from "./Comment";
+import EditCommentCard from "./EditCommentCard";
+import "../css/CommentOptions.css";
 
-const CommentOptions = ({ setIsOptionsOpen, setIsDeleted }) => {
-  const { _id: commentId, postId } = useContext(CommentContext);
+const CommentOptions = ({}) => {
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const {
+    _id: commentId,
+    date,
+    user,
+    content,
+    postId,
+    setIsOptionsOpen,
+    setIsDeleted,
+    setContent,
+    clientUsername,
+  } = useContext(CommentContext);
+
   const deletePost = async () => {
     const location = "http://localhost:3500/home/eliminar-comentario";
     console.log(commentId, postId);
@@ -23,10 +36,26 @@ const CommentOptions = ({ setIsOptionsOpen, setIsDeleted }) => {
     if (res.success) setIsDeleted(true);
   };
   return (
-    <div className="comment-options-container">
-      <button onClick={deletePost}>Eliminar comentario</button>
-      <button>Editar comentario</button>
-    </div>
+    <>
+      {clientUsername === user ? (
+        <div className="comment-options-container">
+          <div className="comment-options-menu">
+            <button className="comment-option" onClick={deletePost}>
+              Eliminar comentario
+            </button>
+            <button
+              className="comment-option"
+              onClick={() => setIsEditOpen(!isEditOpen)}
+            >
+              Editar comentario
+            </button>
+          </div>
+          {isEditOpen ? <EditCommentCard setIsEditOpen={setIsEditOpen} /> : ""}
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

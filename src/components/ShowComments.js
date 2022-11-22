@@ -3,8 +3,6 @@ import "../css/ShowComments.css";
 import { getUsername } from "../getUsername";
 import Comment from "./Comment";
 
-export const CommentContext = React.createContext();
-
 const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
   const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState("");
@@ -69,14 +67,16 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
             const date = new Date(comment.date);
             const user = comment.user;
             const content = comment.content;
-            const _id = comment._id;
+            const commentid = comment._id;
             return (
-              <div key={_id} className="comment-container">
-                <CommentContext.Provider
-                  value={{ date, user, content, _id, postId }}
-                >
-                  <Comment />
-                </CommentContext.Provider>
+              <div key={commentid} className="comment-container">
+                <Comment
+                  date={date}
+                  user={user}
+                  content={content}
+                  _id={commentid}
+                  postId={postId}
+                />
               </div>
             );
           })}
