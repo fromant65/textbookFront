@@ -1,0 +1,73 @@
+.page-profile {
+    background-color: white;
+}
+
+.profile-data {
+    padding: 20px;
+    margin: auto;
+    max-width: max-content;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 0px 5px rgb(100, 120, 200);
+}
+
+.profile-username {
+    color: rgb(100, 120, 200);
+    font-weight: bolder;
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.profile-fullname {
+    display: inline-block;
+    color: rgb(100, 120, 200);
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.profile-email {
+    color: rgb(100, 120, 200);
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.profile-social-container {
+    display: flex;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.profile-social-container div {
+    padding: 20px;
+    color: rgb(100, 120, 200);
+    font-weight: 500;
+    font-size: 20px;
+    user-select: none;
+}
+
+.profile-social-container div:hover {
+    cursor: pointer;
+}
+
+/*
+.profile-followers {}
+
+.profile-following {}
+*/
+.profile-follow {
+    max-width: max-content;
+    padding: 10px 30px;
+    background-color: rgb(205, 215, 255);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    margin: auto;
+}
+
+.profile-follow:hover {
+    background-color: rgb(225, 230, 255);
+}

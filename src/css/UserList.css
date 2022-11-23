@@ -1,0 +1,49 @@
+.user-list-container {
+    background-color: rgb(0, 0, 0, 0.75);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+}
+
+.user-list-card {
+    margin: 100px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.user-list-close {
+    z-index: 100;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.user-list-close:hover {
+    background-color: #ddd;
+}
+
+.user-list-title {
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgb(100, 120, 200);
+}
+
+.user-list {
+    overflow: auto;
+}
+
+.user-list-item {
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(120, 140, 220);
+    user-select: none;
+    cursor: pointer;
+}

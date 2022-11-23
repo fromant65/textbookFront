@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { serverLink } from "../App";
 import Post from "./Post";
 import { getUsername } from "../getUsername";
+import "../css/ProfileComponent.css";
+import UserList from "./UserList";
 
 const ProfileComponent = ({ user, isOwnProfile }) => {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
   const [username, setUsername] = useState("");
+  const [isFollowersOpen, setIsFollowersOpen] = useState(false);
+  const [isFollowingOpen, setIsFollowingOpen] = useState(false);
 
   const getFollowers = () => {
     if (userInfo?.followers) {
@@ -24,6 +28,18 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
     }
   };
 
+  const showFollowers = () => {
+    if (userInfo?.followers) {
+      setIsFollowersOpen(true);
+    }
+  };
+
+  const showFollowing = () => {
+    if (userInfo?.following) {
+      setIsFollowingOpen(true);
+    }
+  };
+
   useEffect(() => {
     if (user) {
       const getUserInfo = async () => {
@@ -32,7 +48,6 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
         setUserInfo(res.user);
         //console.log(res.user);
       };
-      console.log(isOwnProfile);
       getUserInfo();
     }
   }, [user]);
@@ -43,7 +58,6 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
         const req = await fetch(`${serverLink}/user-publicaciones/${user}`);
         const res = await req.json();
         setPosts(res);
-        console.log(res);
       };
       getUserPosts();
     }
@@ -65,33 +79,56 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
             <div className="profile-fullname">{userInfo.fullname}</div>
             <div className="profile-email">{userInfo.email}</div>
             <div className="profile-social-container">
-              <div>Followers: {getFollowers()}</div>
-              <div>Following: {getFollowing()}</div>
-              <>
-                {isOwnProfile ? (
-                  ""
-                ) : (
-                  <button className="profile-follow">Follow</button>
-                )}
-              </>
+              <div className="profile-followers" onClick={showFollowers}>
+                Followers: {getFollowers()}
+              </div>
+              <div className="profile-following" onClick={showFollowing}>
+                Following: {getFollowing()}
+              </div>
             </div>
+            {isOwnProfile ? (
+              ""
+            ) : (
+              <button className="profile-follow">Follow</button>
+            )}
           </article>
           <article className="profile-posts">
-            {posts.map((post) => {
-              return (
-                <div key={post._id}>
-                  <Post
-                    user={username}
-                    author={post.user}
-                    content={post.content}
-                    date={post.date}
-                    likes={post.likes}
-                    postId={post._id}
-                  />
-                </div>
-              );
-            })}
+            {posts
+              .slice(0)
+              .reverse()
+              .map((post) => {
+                return (
+                  <div key={post._id}>
+                    <Post
+                      user={username}
+                      author={post.user}
+                      content={post.content}
+                      date={post.date}
+                      likes={post.likes}
+                      postId={post._id}
+                    />
+                  </div>
+                );
+              })}
           </article>
+          {isFollowersOpen ? (
+            <UserList
+              users={userInfo.followers}
+              setIsOpen={setIsFollowersOpen}
+              text="Personas que lo siguen"
+            />
+          ) : (
+            ""
+          )}
+          {isFollowingOpen ? (
+            <UserList
+              users={userInfo.following}
+              setIsOpen={setIsFollowingOpen}
+              text="Personas seguidas"
+            />
+          ) : (
+            ""
+          )}
         </section>
       ) : (
         <div>No se pudo cargar la info del usuario</div>
