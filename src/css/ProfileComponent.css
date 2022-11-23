@@ -70,4 +70,5 @@
 
 .profile-follow:hover {
     background-color: rgb(225, 230, 255);
+    cursor: pointer;
 }

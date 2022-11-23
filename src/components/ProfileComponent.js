@@ -11,22 +11,18 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
   const [username, setUsername] = useState("");
   const [isFollowersOpen, setIsFollowersOpen] = useState(false);
   const [isFollowingOpen, setIsFollowingOpen] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(false);
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
 
-  const getFollowers = () => {
+  useEffect(() => {
     if (userInfo?.followers) {
-      return userInfo.followers.length;
-    } else {
-      return 0;
+      setFollowers(userInfo.followers.length);
     }
-  };
-
-  const getFollowing = () => {
     if (userInfo?.following) {
-      return userInfo.following.length;
-    } else {
-      return 0;
+      setFollowing(userInfo.following.length);
     }
-  };
+  }, [userInfo]);
 
   const showFollowers = () => {
     if (userInfo?.followers) {
@@ -40,6 +36,62 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
     }
   };
 
+  //Seguir o dejar de seguir al usuario
+  const toggleFollow = () => {
+    if (userInfo?.followers && !isOwnProfile) {
+      fetch(`${serverLink}/profile/seguir`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userFollowed: user,
+          client: username,
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (res?.success === "Follower added") {
+            const newUserInfo = userInfo;
+            newUserInfo.followers.push({ username: username });
+            setFollowers(followers + 1);
+            setUserInfo(newUserInfo);
+            setIsFollowed(true);
+          }
+          if (res?.success === "Follower removed") {
+            const newUserInfo = userInfo;
+            let newFollowers = [];
+            for (let follower in newUserInfo.followers) {
+              if (newUserInfo.followers[follower].username === username) {
+                continue;
+              }
+              newFollowers.push(newUserInfo.followers[follower]);
+            }
+            setFollowers(followers - 1);
+            setUserInfo({ ...newUserInfo, followers: newFollowers });
+            setIsFollowed(false);
+          }
+        });
+    }
+  };
+
+  //Determinar si el cliente sigue al usuario del perfil
+
+  useEffect(() => {
+    if (userInfo.followers && !isOwnProfile) {
+      const followed = userInfo.followers.filter(
+        (user) => user.username === username
+      ).length
+        ? true
+        : false;
+      setIsFollowed(followed);
+    }
+  }, [userInfo]);
+
+  //Obtener información de usuario del perfil
   useEffect(() => {
     if (user) {
       const getUserInfo = async () => {
@@ -52,6 +104,7 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
     }
   }, [user]);
 
+  //Obtener posts del usuario
   useEffect(() => {
     if (user) {
       const getUserPosts = async () => {
@@ -63,6 +116,7 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
     }
   }, [user]);
 
+  //Obtener username del cliente
   useEffect(() => {
     const getUsername_ = async () => {
       setUsername(await getUsername());
@@ -80,16 +134,18 @@ const ProfileComponent = ({ user, isOwnProfile }) => {
             <div className="profile-email">{userInfo.email}</div>
             <div className="profile-social-container">
               <div className="profile-followers" onClick={showFollowers}>
-                Followers: {getFollowers()}
+                Followers: {followers}
               </div>
               <div className="profile-following" onClick={showFollowing}>
-                Following: {getFollowing()}
+                Following: {following}
               </div>
             </div>
             {isOwnProfile ? (
               ""
             ) : (
-              <button className="profile-follow">Follow</button>
+              <button className="profile-follow" onClick={toggleFollow}>
+                {isFollowed ? "Stop Following" : "Follow"}
+              </button>
             )}
           </article>
           <article className="profile-posts">
