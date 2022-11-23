@@ -11,9 +11,13 @@ const UserList = ({ users, setIsOpen, text }) => {
         <div className="user-list">
           {users.map((user) => {
             return (
-              <div className="user-list-item" key={user.username}>
+              <a
+                href={`/profile/${user.username}`}
+                className="user-list-item"
+                key={user.username}
+              >
                 {user.username}
-              </div>
+              </a>
             );
           })}
         </div>

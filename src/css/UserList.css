@@ -27,6 +27,7 @@
 
 .user-list-close:hover {
     background-color: #ddd;
+    cursor: pointer;
 }
 
 .user-list-title {
@@ -46,4 +47,6 @@
     color: rgb(120, 140, 220);
     user-select: none;
     cursor: pointer;
+    display: block;
+    text-decoration: none;
 }

@@ -3,11 +3,12 @@ import Navbar from "../components/Navbar";
 import "../css/Navbar.css";
 import { getUsername } from "../getUsername";
 import ProfileComponent from "../components/ProfileComponent";
+import { useParams } from "react-router-dom";
 
-const Profile = ({ username }) => {
-  //Username es una prop opcional que hace referencia a quién es el dueño del perfil
+const Profile = () => {
   const [user, setUser] = useState("");
   const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const { username } = useParams();
   useEffect(() => {
     const setProfileUser = async () => {
       //En caso de que prop no esté definida, quiere decir que accedimos a nuestro propio perfil
