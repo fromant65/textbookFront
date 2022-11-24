@@ -1,0 +1,48 @@
+.change-user-info-container {
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 15px;
+    margin-left: 30px;
+    padding: 20px;
+    max-width: max-content;
+}
+
+.change-user-info-container input {
+    display: block;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 20px;
+    border: none;
+    border-radius: 10px;
+    min-width: 300px;
+    background-color: #eee;
+}
+
+.change-user-info-container input:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px rgb(100, 120, 250);
+}
+
+.change-user-info-container button {
+    padding: 10px;
+    margin: 10px 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.change-user-info-container button:hover {
+    cursor: pointer;
+    background-color: #e6e6e6;
+}
+
+.change-error-alert {
+    color: rgb(255, 100, 100);
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.success-alert {
+    color: rgb(100, 255, 100);
+    font-weight: bolder;
+    font-size: 18px;
+}
