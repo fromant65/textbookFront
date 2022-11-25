@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Config from "./pages/Config";
 import NotFound from "./pages/NotFound";
+import Search from "./pages/Search";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 export const serverLink = "http://localhost:3500";
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/profile" element={<Profile />} />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/config" element={<Config />} />
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

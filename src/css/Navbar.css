@@ -1,7 +1,7 @@
 .navbar {
     z-index: 100;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     text-align: center;
     background-color: #fff;
     height: 30px;
@@ -41,8 +41,53 @@
     cursor: pointer;
 }
 
-@media screen and (max-width : 650px) {
-    .Link p {
+.search-input {
+    display: inline-block;
+}
+
+.search-input input {
+    width: 80px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.search-input input:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgb(100, 160, 210);
+}
+
+.search-results {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding-bottom: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.search-results a {
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding-top: 10px;
+    color: rgb(100, 160, 210)
+}
+
+.search-results a:hover {
+    color: rgb(80, 140, 190);
+}
+
+.results-not-available {
+    padding: none !important;
+    border: none;
+    display: none !important;
+}
+
+@media screen and (max-width : 700px) {
+
+    .Link p,
+    .search-input input {
         display: none;
     }
 }
