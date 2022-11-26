@@ -18,7 +18,7 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
 
   useEffect(() => {
     getComments(postId);
-  }, []);
+  }, [postId]);
 
   const makeComment = async (postId) => {
     const location = `${serverLink}/home/comentar`;
@@ -70,7 +70,7 @@ const ShowComments = ({ postId, isCommentsOpen, setIsCommentsOpen }) => {
             const content = comment.content;
             const commentid = comment._id;
             return (
-              <div key={commentid} className="comment-container">
+              <div key={commentid} id={commentid} className="comment-container">
                 <Comment
                   date={date}
                   user={user}

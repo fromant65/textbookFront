@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Post.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { IconContext } from "react-icons";
 import ShowComments from "./ShowComments";
 import formatearFecha from "../formatearFecha";
 import PostOptions from "./PostOptions";
@@ -42,7 +41,7 @@ const Post = ({ user, author, content, date, likes, postId }) => {
       if (likes.length === 1) setLike(true);
       else setLike(false);
     }
-  }, []);
+  }, [user, likes]);
   return (
     <>
       {isDeleted ? (

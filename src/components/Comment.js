@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import formatearFecha from "../formatearFecha";
 import CommentOptions from "./CommentOptions";
 import { getUsername } from "../getUsername";
@@ -24,7 +24,7 @@ const Comment = ({ date, user, content, _id, postId }) => {
   return (
     <>
       {isDeleted ? (
-        ""
+        document.getElementById(_id).setAttribute("style", "display:none")
       ) : (
         <>
           <CommentContext.Provider

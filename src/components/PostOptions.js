@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { PostContext } from "./Post";
 import EditCard from "./EditCard";
 import "../css/PostOptions.css";

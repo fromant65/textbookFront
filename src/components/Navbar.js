@@ -4,7 +4,7 @@ import { BiBook, BiExit } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { BsGear, BsSearch } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { serverLink } from "../App";
 
 const Navbar = () => {
@@ -18,22 +18,21 @@ const Navbar = () => {
     if (res.logout) navigate("/");
   };
 
-  const handleSearch = async (e) => {
-    const req = await fetch(`${serverLink}/search-user/${userQuery}`);
-    const res = await req.json();
-    setQueryResult(res);
-    if (res.length) {
-      document
-        .querySelector(".search-results")
-        .classList.remove("results-not-available");
-    } else {
-      document
-        .querySelector(".search-results")
-        .classList.add("results-not-available");
-    }
-  };
-
   useEffect(() => {
+    const handleSearch = async (e) => {
+      const req = await fetch(`${serverLink}/search-user/${userQuery}`);
+      const res = await req.json();
+      setQueryResult(res);
+      if (res.length) {
+        document
+          .querySelector(".search-results")
+          .classList.remove("results-not-available");
+      } else {
+        document
+          .querySelector(".search-results")
+          .classList.add("results-not-available");
+      }
+    };
     handleSearch();
   }, [userQuery]);
 

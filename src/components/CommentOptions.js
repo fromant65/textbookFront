@@ -4,23 +4,22 @@ import EditCommentCard from "./EditCommentCard";
 import "../css/CommentOptions.css";
 import { serverLink } from "../App";
 
-const CommentOptions = ({}) => {
+const CommentOptions = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const {
     _id: commentId,
-    date,
+    //date,
     user,
-    content,
+    //content,
     postId,
-    setIsOptionsOpen,
+    //setIsOptionsOpen,
     setIsDeleted,
-    setContent,
+    //setContent,
     clientUsername,
   } = useContext(CommentContext);
 
   const deletePost = async () => {
     const location = `${serverLink}/home/eliminar-comentario`;
-    console.log(commentId, postId);
     const req = await fetch(location, {
       method: "POST",
       headers: {
@@ -33,7 +32,6 @@ const CommentOptions = ({}) => {
       }),
     });
     const res = await req.json();
-    console.log(res);
     if (res.success) setIsDeleted(true);
   };
   return (

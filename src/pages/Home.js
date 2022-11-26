@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Home.css";
 import Navbar from "../components/Navbar";
 import MakePost from "../components/MakePost";

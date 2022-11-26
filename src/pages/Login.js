@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/Login.css";
 import { serverLink } from "../App";
 
@@ -8,7 +8,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
-  const navigate = useNavigate();
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -34,10 +33,7 @@ const Login = () => {
   useEffect(() => {
     if (isLogged) {
       window.location.href = "/home";
-    }
-  }, [isLogged]);
-  useEffect(() => {
-    if (!isLogged) {
+    } else {
       fetch(`${serverLink}/login`, { credentials: "include" })
         .then((res) => {
           return res.json();
@@ -46,7 +42,7 @@ const Login = () => {
           if (data.loggedIn) setIsLogged(true);
         });
     }
-  }, []);
+  }, [isLogged]);
   return (
     <div className="page-login">
       <div className="container form-container">
