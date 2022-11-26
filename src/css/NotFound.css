@@ -1,0 +1,21 @@
+.not-found-container {
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: white;
+    height: 200px;
+    max-width: 600px;
+    text-align: center;
+
+}
+
+.not-found-title {
+    color: rgb(100, 120, 200);
+    font-size: 22px;
+}
+
+.not-found-link {
+    display: block;
+    padding: 40px 0px;
+    color: black;
+}
