@@ -11,6 +11,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [isCargando, setIsCargando] = useState(false);
   const [user, setUser] = useState("");
+  const [cantidadCargas, setCantidadCargas] = useState(0);
   useEffect(() => {
     const fetchUser = async () => {
       const req = await fetch(`${serverLink}/login`, {
@@ -60,6 +61,7 @@ const Home = () => {
       .getElementById("cargar-mas-spinner")
       .classList.add("cargando-hidden");
     setIsCargando(false);
+    setCantidadCargas(cantidadCargas + 1);
   };
   useEffect(() => {
     if (lastPost <= 1) {
@@ -68,6 +70,12 @@ const Home = () => {
       document.getElementById("cargar-mas").disabled = false;
     }
   }, [lastPost]);
+
+  useEffect(() => {
+    if (lastPost && cantidadCargas == 0) {
+      cargarMas(lastPost);
+    }
+  }, [lastPost, cantidadCargas]);
   return (
     <>
       <Navbar />

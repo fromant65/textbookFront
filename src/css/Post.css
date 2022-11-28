@@ -65,3 +65,9 @@
     background-color: rgb(240, 250, 255);
     color: black;
 }
+
+@media screen and (max-width : 500px) {
+    .post-container {
+        width: 80%;
+    }
+}

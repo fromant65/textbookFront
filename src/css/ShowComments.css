@@ -85,6 +85,28 @@
     border-radius: 10px;
 }
 
+.submit-comment:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
 .input-comment:focus {
     outline: none;
+}
+
+@media screen and (max-width : 400px) {
+    .post-comment-form {
+        display: flex;
+    }
+
+    .submit-comment {
+        width: 65px;
+        overflow: hidden;
+        font-size: 10px;
+    }
+
+    .input-comment {
+        width: 0;
+        flex-grow: 1;
+    }
 }
