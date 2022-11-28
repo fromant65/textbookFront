@@ -3,6 +3,8 @@ import "./index.css";
 import React from "react";
 import Root from "./pages/Root";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import RestorePassword from "./pages/RestorePassword";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -40,6 +42,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Root />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/restore-password" element={<RestorePassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route exact path="/profile" element={<Profile />} />
