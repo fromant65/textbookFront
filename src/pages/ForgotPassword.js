@@ -7,6 +7,7 @@ const ForgotPassword = () => {
   const [isMailSent, setIsMailSent] = useState(false);
   const handlePasswordChange = async (e) => {
     e.preventDefault();
+    document.getElementById("submit-req").disabled = true;
     const req = await fetch(`${serverLink}/forgot-password`, {
       method: "POST",
       headers: {
@@ -25,6 +26,7 @@ const ForgotPassword = () => {
     } else {
       setIsError(true);
       setIsMailSent(false);
+      document.getElementById("submit-req").disabled = false;
     }
   };
   return (
@@ -45,7 +47,9 @@ const ForgotPassword = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Recuperar contraseña</button>
+        <button type="submit" id="submit-req">
+          Recuperar contraseña
+        </button>
       </form>
       <a href="/login" className="for-pass-return">
         ¿Ya recordaste tu contraseña? Logeate!
