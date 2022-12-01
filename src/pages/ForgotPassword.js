@@ -19,7 +19,6 @@ const ForgotPassword = () => {
       }),
     });
     const res = await req.json();
-    console.log(res);
     if (res?.success) {
       setIsMailSent(true);
       setIsError(false);
