@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import { serverLink } from "../App";
 
@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
-
+  const navigate = useNavigate();
   const loginHandler = async (e) => {
     e.preventDefault();
     const location = `${serverLink}/login`;
@@ -25,14 +25,17 @@ const Login = () => {
       credentials: "include",
     });
     const res = await req.json();
+    console.log(res);
     if (res.message) {
       setLoginStatus(res.message);
-    } else setIsLogged(res.login);
+    } else {
+      setIsLogged(res.login);
+    }
   };
   //Redireccionamos una vez que se logea el usuario
   useEffect(() => {
     if (isLogged) {
-      window.location.href = "/home";
+      navigate("/home");
     } else {
       fetch(`${serverLink}/login`, { credentials: "include" })
         .then((res) => {

@@ -48,10 +48,11 @@ const Home = () => {
       },
       body: JSON.stringify({
         postid: lastPost,
+        userid: user,
       }),
-      credentials: "include",
     });
     const res = await req.json();
+    console.log(res);
     setPosts([...posts, ...res.posts]);
     setLastPost(res.lastId - 1);
     document
@@ -72,10 +73,10 @@ const Home = () => {
   }, [lastPost]);
 
   useEffect(() => {
-    if (lastPost && cantidadCargas == 0) {
+    if (lastPost && cantidadCargas == 0 && user) {
       cargarMas(lastPost);
     }
-  }, [lastPost, cantidadCargas]);
+  }, [lastPost, cantidadCargas, user]);
   return (
     <>
       <Navbar />

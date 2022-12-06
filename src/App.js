@@ -13,8 +13,9 @@ import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-export const serverLink = "https://text-book.herokuapp.com";
-
+//export const serverLink = "http://localhost:3500";
+export const serverLink = "https://textbook-back.onrender.com";
+//export const serverLink = "https://text-book.herokuapp.com";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function App() {
     }
   }, [isLogged]);
   useEffect(() => {
-    fetch("http://localhost:3500/login", { credentials: "include" })
+    fetch(`${serverLink}/login`, { credentials: "include" })
       .then((res) => {
         return res.json();
       })
